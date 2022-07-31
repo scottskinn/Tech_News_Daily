@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+
 // GET /api/users
 router.get('/', (req, res) => {
     User.findAll({
@@ -51,6 +52,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     // expects (username:'', email:'', password:'')
     User.update(req.body, {
+        individualHooks: true,
         where: {
           id: req.params.id
         }
@@ -67,6 +69,29 @@ router.put('/:id', (req, res) => {
           res.status(500).json(err);
         });
 });
+
+router.post('/login', (req, res) => {
+    User.findOne({
+        where: {
+          email: req.body.email
+        }
+    }).then(dbUserData => {
+    if (!dbUserData) {
+        res.status(400).json({ message: 'No user with that email address!' });
+        return;
+    }
+
+    // Verify user
+    const validPassword = dbUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+        res.status(400).json({ message: 'Incorrect password!' });
+        return;
+    }
+    res.json({ user: dbUserData, message: 'You are logged in!' });
+
+    }); 
+})
+
 
 // DELETE /api/users/1
 router.delete('/:id', (req, res) => {
