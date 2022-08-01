@@ -1,7 +1,7 @@
 {
   "name": "tech_news_daily",
   "version": "1.0.0",
-  "description": "",
+  "description": "Tech news daily by tech lovers",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
