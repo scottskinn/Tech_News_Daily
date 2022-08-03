@@ -36,7 +36,8 @@ router.get('/', (req, res) => {
             }));
             // pass a single post object into the homepage template
             res.render('homepage', {
-                posts
+                posts,
+                loggedIn: req.session.loggedIn
             });
         })
         .catch(err => {
@@ -131,7 +132,8 @@ router.get('/post/:id', (req, res) => {
 
             // pass data to template
             res.render('single-post', {
-                post
+                post,
+                loggedIn: req.session.loggedIn
             });
         })
         .catch(err => {
