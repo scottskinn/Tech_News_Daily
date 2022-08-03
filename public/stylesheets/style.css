@@ -84,6 +84,7 @@
   
   header h1 {
     font-size: 1em;
+    margin: 1rem auto;
   }
   
   main {
