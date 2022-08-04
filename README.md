@@ -28,6 +28,16 @@ For you to be able to start the server from your computer, run these steps in yo
 2. npm start
 ```
 
+You will need to create a .env file in the root folder of the project. This file will contain your database connection information.
+
+- DB_NAME='tech_news_daily_db'
+- DB_USER='root'
+- DB_PW='Enter MySQL password here!'
+- DB_SS='SuperSecret'
+
+Once you have the server running, you can access it from your browser by going to <http://localhost:3002/>
+Then you can login and create an account. You can also create a blog post.
+
 ## Deployed Site
 
 ```url
